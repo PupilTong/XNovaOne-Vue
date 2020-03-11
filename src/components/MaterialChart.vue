@@ -12,12 +12,13 @@
         <dv-charts :option="ring" class="fullSize"/>
       </div>
       <div class="md-layout-item discription" style="position: absolute;">
-          <dv-digital-flop :config="num" style="width:100%;height:100%" />
+          <numberKanban :options="options" style="width:100%;height:100%" />
       </div>
   </div>
 </template>
 
 <script>
+import numberKanban from './numberKanban'
 export default {
     name:'MaterialChart',
     props:{
@@ -76,17 +77,11 @@ export default {
                     }
                 }],
             color: ['#03d3ec']
-            },
-            num:{
-                number:[this.options.value,this.options.maxium],
-                content: '{nt}/{nt}',
-                style:{
-                    fontFamily : 'Roboto',
-                    fontSize:this.options.size /10,
-                    fill : this.options.value/this.options.maxium>0.8?'#ec032a':this.options.value/this.options.maxium>0.6?'#ffdb5c':'#9fe6b8'
-                }
             }
         }
+    },
+    components:{
+        numberKanban
     }
 }
 </script>

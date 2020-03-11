@@ -7,15 +7,19 @@
     <MaterialChart :options="metalOptions" class="size"/>
     <MaterialChart :options="crystalOptions" class="size"/>
     <MaterialChart :options="hydroOptions" class="size"/>
+    <MaterialChart :options="ArgonOptions" class="size"/>
+    <Battery :options="EnergyOptions" class="size" />
     <div></div>
   </div>
 </template>
 
 <script>
 import MaterialChart from './components/MaterialChart'
+import Battery from './components/battery'
 import metalImg from '@/assets/icon/material/metal.jpg'
 import crystalImg from '@/assets/icon/material/crystal.jpg'
 import hydroImg from '@/assets/icon/material/hydro.jpg'
+import Argon from '@/assets/icon/material/Argon-glow.jpg'
 export default {
   name: 'App',
   data(){return{
@@ -43,9 +47,22 @@ export default {
       description:'Hydro',
       size:100
     },
+    ArgonOptions:{
+      img:Argon,
+      maxium:3000,
+      value:3234,
+      name:'chart',
+      description:'Argon',
+      size:100
+    },
+    EnergyOptions:{
+      maxium:3000,
+      _value:2000
+    }
   }},
   components: {
     MaterialChart,
+    Battery
   }
 }
 </script>
