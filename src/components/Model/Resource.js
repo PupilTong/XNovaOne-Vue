@@ -1,18 +1,15 @@
 export default class Resource{
-    name ='' ;
-    value= 0;
-    img= null;
-    constructor(name = '',value = 0,img=null){
-        this.name=name;
-        this.value=value;
-        this.img=img
-        return this
+    data = {
+        name :'' ,
+        value: 0,
+        img : null,
+        enough:true
     }
-    data(){
-        return {
-            name : this.name,
-            value : this.value,
-            img : this.img
-        }
+    constructor(name = '',value = 0,img=null,enough=true){
+        this.data.name=name;
+        this.data.value=value;
+        this.data.img=img
+        this.enough = enough
+        return this
     }
 }

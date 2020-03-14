@@ -30,7 +30,7 @@ export default {
   name: 'App',
   data(){return{
     metalResource:new ResourceModel('Metal',20,metalImg),
-    crystalResource:new ResourceModel('Crystal',2534,crystalImg),
+    crystalResource:new ResourceModel('Crystal',2534,crystalImg,false),
     hydroResource:new ResourceModel('Hydro',3234,hydroImg),
     argonResource:new ResourceModel('Argon',3234,Argon),
     EnergyOptions:{
@@ -40,8 +40,8 @@ export default {
   }},
   computed:{
     metalBuilding(){
-      var temp =  new BuildingModel()
-      temp.init({
+      var temp =  new BuildingModel();
+      temp.data = {
         interface:{
             img :metalImg,
             name:'Metal Mine',
@@ -49,12 +49,12 @@ export default {
             enableUpgrade:true,
             enableDowngrade:true
         },
-        level:0,
-        energy:0,
-        upgradeResources:[],
-        downgradeResources:[],
-      })
-      return temp
+        level:12,
+        energy:126,
+        upgradeResources:[this.metalResource,this.crystalResource,this.hydroResource,this.argonResource],
+        downgradeResources:[this.metalResource,this.crystalResource,this.hydroResource,this.argonResource],
+      }
+      return temp;
     },
     metalOptions(){
       return {
@@ -96,7 +96,7 @@ export default {
 @import "~vue-material/dist/theme/engine"; // Import the theme engine
 @include md-register-theme("default", (
   primary: md-get-palette-color(green, A700), // The primary color of your application
-  accent: md-get-palette-color(red, A200), // The accent or secondary color
+  accent: md-get-palette-color(red, 300), // The accent or secondary color
   theme: dark // This can be dark or light
 ));
 @import "~vue-material/dist/theme/all"; // Apply the theme

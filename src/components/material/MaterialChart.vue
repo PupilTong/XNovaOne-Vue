@@ -3,8 +3,8 @@
       <div class="Component md-layout-item centerChild" style="z-index:1;position: absolute;">
           <div class="centerChild fullsize" >
               <md-avatar class="blueshadow roundImg fullsize md-large">
-                <md-tooltip md-direction="bottom">{{options.resource.name}}</md-tooltip>
-                <img :src="options.resource.img"  />
+                <md-tooltip md-direction="bottom">{{options.resource.data.name}}</md-tooltip>
+                <img :src="options.resource.data.img"  />
               </md-avatar>
           </div>
       </div>
@@ -39,7 +39,7 @@ export default {
     data(){
         return{
             kanbanOptions:{
-                value:this.options.resource.value,
+                value:this.options.resource.data.value,
                 maxium:this.options.maxium
             },
             ring: {
@@ -51,7 +51,7 @@ export default {
                     radius: '90%',
                     data: [{ 
                         name: this.options.resource.name, 
-                        value: this.options.resource.value/this.options.maxium*100,
+                        value: this.options.resource.data.value/this.options.maxium*100,
                         gradient: ['#03d3ec', '#9fe6b8', '#ffdb5c','#ff9f7f','#fb7293','#ec032a'] 
                         },
                     ],
