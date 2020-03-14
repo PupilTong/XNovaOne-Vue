@@ -3,8 +3,8 @@
       <div class="Component md-layout-item centerChild" style="z-index:1;position: absolute;">
           <div class="centerChild fullsize" >
               <md-avatar class="blueshadow roundImg fullsize md-large">
-                <md-tooltip md-direction="bottom">{{options.description}}</md-tooltip>
-                <img :src="options.img"  />
+                <md-tooltip md-direction="bottom">{{options.resource.name}}</md-tooltip>
+                <img :src="options.resource.img"  />
               </md-avatar>
           </div>
       </div>
@@ -12,7 +12,7 @@
         <dv-charts :option="ring" class="fullSize"/>
       </div>
       <div class="md-layout-item discription" style="position: absolute;">
-          <numberKanban :options="options" style="width:100%;height:100%" />
+          <numberKanban :options="kanbanOptions" style="width:100%;height:100%" />
       </div>
   </div>
 </template>
@@ -24,18 +24,24 @@ export default {
     props:{
         options:{
             default:{
-                img:null,
                 maxium:100,
-                value:20,
                 name:'chart',
-                description:'Description',
-                size:10
+                size:10,
+                resource:{
+                    name:'name',
+                    value:20,
+                    img:null
+                }
             }
         },
 
     },
     data(){
         return{
+            kanbanOptions:{
+                value:this.options.resource.value,
+                maxium:this.options.maxium
+            },
             ring: {
                 series: [{
                     type: 'gauge',
@@ -44,8 +50,8 @@ export default {
                     arcLineWidth: this.options.size /15,
                     radius: '90%',
                     data: [{ 
-                        name: this.options.name, 
-                        value: this.options.value/this.options.maxium*100,
+                        name: this.options.resource.name, 
+                        value: this.options.resource.value/this.options.maxium*100,
                         gradient: ['#03d3ec', '#9fe6b8', '#ffdb5c','#ff9f7f','#fb7293','#ec032a'] 
                         },
                     ],
