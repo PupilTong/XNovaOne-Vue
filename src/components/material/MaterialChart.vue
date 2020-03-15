@@ -1,11 +1,11 @@
 <template>
-  <div class="background md-layout md-alignment-top-center">
+  <div class="background md-layout md-alignment-top-center md-gutter" >
       <div class="Component md-layout-item centerChild" style="z-index:1;position: absolute;">
           <div class="centerChild fullsize" >
-              <md-avatar class="blueshadow roundImg fullsize md-large">
+              <div class="blueshadow roundImg "  :style="{ height: imageHeight + 'px',width:imageHeight + 'px' }">
                 <md-tooltip md-direction="bottom">{{options.resource.data.name}}</md-tooltip>
-                <img :src="options.resource.data.img"  />
-              </md-avatar>
+                <img :src="options.resource.data.img" :style="{ height: imageHeight + 'px',width:imageHeight + 'px' }"/>
+              </div>
           </div>
       </div>
       <div class="Component md-layout-item" style="position: absolute;">
@@ -26,7 +26,6 @@ export default {
             default:{
                 maxium:100,
                 name:'chart',
-                size:10,
                 resource:{
                     name:'name',
                     value:20,
@@ -40,14 +39,15 @@ export default {
         return{
             kanbanOptions:{
                 value:this.options.resource.data.value,
-                maxium:this.options.maxium
+                maxium:this.options.maxium,
+                size:10
             },
             ring: {
                 series: [{
                     type: 'gauge',
                     startAngle: -Math.PI / 2,
                     endAngle: Math.PI * 1.5,
-                    arcLineWidth: this.options.size /15,
+                    arcLineWidth: 10,
                     radius: '90%',
                     data: [{ 
                         name: this.options.resource.name, 
@@ -78,16 +78,24 @@ export default {
                         formatter: '{value}%',
                         style: {
                         fill: '#1ed3e5',
-                        fontSize: this.options.size/15
+                        fontSize: 10
                         }
                     }
                 }],
             color: ['#03d3ec']
-            }
+            },
+            imageHeight:null
         }
     },
     components:{
         numberKanban
+    },
+    mounted(){
+        var size=this.$el.offsetHeight
+        this.imageHeight = size*0.6
+        this.kanbanOptions.size = size/15
+        this.ring.series[0].arcLineWidth=size/15
+        
     }
 }
 </script>
@@ -118,9 +126,7 @@ export default {
     justify-content: center
 }
 .roundImg{
-    width: 60% !important;
-    height: 60% !important;
-    border-radius: 50% !important;
+    border-radius: 50%;
     overflow: hidden;
 }
 .blueshadow{

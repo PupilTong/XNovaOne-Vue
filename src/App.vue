@@ -4,13 +4,17 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     -->
-    <MaterialChart :options="metalOptions" class="size"/>
-    <MaterialChart :options="crystalOptions" class="size"/>
-    <MaterialChart :options="hydroOptions" class="size"/>
-    <MaterialChart :options="ArgonOptions" class="size"/>
-    <Battery :options="EnergyOptions" class="size" />
-    <BuildingCard :options="metalBuilding" class="size300" />
-    <div></div>
+    <div class=" md-layout md-alignment-space-around md-gutter">
+    <MaterialChart :options="metalOptions" class="size md-layout-item"/>
+    <MaterialChart :options="crystalOptions" class="size md-layout-item"/>
+    <MaterialChart :options="hydroOptions" class="size md-layout-item"/>
+    <MaterialChart :options="ArgonOptions" class="size md-layout-item"/>
+    <Battery :options="EnergyOptions" class="size md-layout-item" />
+    </div>
+    <div class=" md-layout">
+    <BuildingCard :options="metalBuilding" class="size300  md-layout-item" />
+    <upgradeCard class="size300  md-layout-item" />
+    </div>
   </div>
 </template>
 
@@ -18,6 +22,7 @@
 import MaterialChart from './components/material/MaterialChart'
 import Battery from './components/material/battery'
 import BuildingCard from './components/building/buildingCard'
+import upgradeCard from './components/building/upgradeCard'
 
 import BuildingModel from './components/Model/Building'
 import ResourceModel from './components/Model/Resource'
@@ -47,12 +52,15 @@ export default {
             name:'Metal Mine',
             description:'Used in the extraction of metal ore, metal mines are of primary importance to all emerging and established empires.',
             enableUpgrade:true,
-            enableDowngrade:true
+            enableDowngrade:true,
+            upgrading:true
         },
         level:12,
         energy:126,
+        nextLevelEnergy:150,
         upgradeResources:[this.metalResource,this.crystalResource,this.hydroResource,this.argonResource],
-        downgradeResources:[this.metalResource,this.crystalResource,this.hydroResource,this.argonResource],
+        downgradeResources:[this.metalResource,this.crystalResource],
+        producingResources:[this.metalResource],
       }
       return temp;
     },
@@ -61,32 +69,29 @@ export default {
         resource:this.metalResource,
         maxium:100,
         name:'chart',
-        size:100
       }
     },
     crystalOptions(){return {
       resource:this.crystalResource,
       maxium:4000,
       name:'chart',
-      size:100
     }},
     hydroOptions(){return {
       resource:this.hydroResource,
       maxium:3000,
       name:'chart',
-      size:100
     }},
     ArgonOptions(){return {
       resource:this.argonResource,
       maxium:3000,
       name:'chart',
-      size:100
     }},
   },
   components: {
     MaterialChart,
     Battery,
-    BuildingCard
+    BuildingCard,
+    upgradeCard
   }
 }
 </script>

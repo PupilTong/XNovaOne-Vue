@@ -1,9 +1,9 @@
 <template>
   <div >
-      <div class="md-layout md-alignment-center-center" style="width:100%;height:80%;padding:10%" >
+      <div class="md-layout md-alignment-center-center md-gutter" style="width:100%;height:80%;padding:10%" >
         <dv-percent-pond :config="pond" class=" md-layout-item" style="width:100%;height:100%"/>
       </div>
-      <div class="md-layout md-alignment-center-center" style="width:100%;height:20%">
+      <div class="md-layout md-alignment-center-center md-gutter" style="width:100%;height:20%">
         <numberKanban :options="num" class=" md-layout-item" style="width:100%;height:100%"/>
       </div>
   </div>

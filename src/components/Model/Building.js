@@ -5,12 +5,15 @@ export default class BuildingModel{
             name:'name',
             description:'description',
             enableUpgrade:true,
-            enableDowngrade:true
+            enableDowngrade:true,
+            upgrading:false,
         },
         level:0,
         energy:0,
+        nextLevelEnergy:0,
         upgradeResources:[],
         downgradeResources:[],
+        producingResources:[]
     }
         
     constructor(img = null,name = 'name',description='description',enableUpgrade=true,enableDowngrade=true,level=0,energy=0,upgradeResources=[],downgradeResources=[]){

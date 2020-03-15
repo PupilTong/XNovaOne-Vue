@@ -31,7 +31,7 @@
 
             </div>
             <md-divider style="margin:5px" />
-            <div class=" md-layout md-alignment-center-space-between" v-if="!options.data.interface.upgrading">
+            <div class=" md-layout md-alignment-center-space-between">
                 <div class="md-layout-item">
                     <md-icon>arrow_upward</md-icon>
                     <md-tooltip md-direction="bottom">Upgrade</md-tooltip>
@@ -59,16 +59,6 @@
                 </div>
             </div>
 
-            
-            <div class=" md-layout md-alignment-center-space-between" v-if="options.data.interface.upgrading">
-                <div class="md-layout-item md-size-20">
-                    <md-icon>arrow_upward</md-icon>
-                </div>
-                
-                <div class="md-layout-item" >
-                    <md-progress-bar md-mode="indeterminate" />
-                </div>
-            </div>
             
         </div>
       </md-card-header>
@@ -118,7 +108,7 @@
 import BuildingModel from '../Model/Building'
 
 export default {
-    name:'BuildingCard',
+    name:'upgradeCard',
     props:{
         options:{
             default:() =>{return new BuildingModel()}
