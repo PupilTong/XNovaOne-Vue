@@ -13,7 +13,7 @@
     </div>
     <div class=" md-layout">
     <BuildingCard :options="metalBuilding" class="size300  md-layout-item" />
-    <upgradeCard class="size300  md-layout-item" />
+    <upgradeCard :building="metalBuilding" class="size300  md-layout-item" />
     </div>
   </div>
 </template>
