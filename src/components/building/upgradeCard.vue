@@ -16,9 +16,9 @@
             </div>
         </md-card-header>
 
-        <md-card-content>
-            <dv-percent-pond :config="pond" style="height:20px;width:100%"/>
-            <dv-percent-pond :config="pond" style="height:20px;width:100%"/>
+        <md-card-content class=" md-gutter md-bottom-center">
+            <dv-percent-pond :config="pond" style="width:99%" :style="'height:' + fontSize  + 'px;margin: 5px' " class=" md-gutter"/>
+            <dv-digital-flop :config="num" style="width:99%" :style="'height:' + fontSize  + 'px;margin: 5px' " class=" md-gutter"/>
         </md-card-content>
         <md-card-actions>
             <md-button class=" md-raised md-accent ">Cancel</md-button>
@@ -38,24 +38,60 @@ export default {
         },
         time: {
             default:()=>{return{
-                current:150,
-                maxium:200
+                current:30,
+                maxium:100
             }}
         }
 
     },
     data(){return{
-            pond:{
-                value: this.time.current/this.time.maxium *100,
-                borderWidth: 1,
-                lineDash: [0, 0],
-                textColor:'#fff',
-                colors:['#03d3ec'] ,
-                localGradient:false,
-                formatter:'',
-            },
+        number:[],
+        release : this.time.current,
+        fontSize:20,
+        timerID:null
     }},
+    computed:{
+        pond(){return{
+            value: this.release/this.time.maxium *100,
+            borderWidth: 1,
+            lineDash: [0, 0],
+            textColor:'#fff',
+            colors:['#00c853'] ,
+            localGradient:false,
+            formatter:'',
+        }},
+        
+        num(){return{
+            number:this.number,
+            content: '{nt}:{nt}:{nt}',
+            style:{
+                fontFamily : 'Roboto',
+                fontSize:this.fontSize,
+                fill : '#03d3ec',
+                textAlignn:'start'
+            }
+        }}
+    },
     methods:{
+        updateTime(){
+            var hours = Math.floor(this.release /60 /60);
+            var minutes = Math.floor(this.release /60 - hours * 60)
+            var seconds = Math.floor(this.release - hours *60*60 - minutes*60)
+            this.number = [hours,minutes,seconds]
+        }
+    },
+    mounted(){
+        this.updateTime();
+        this.fontSize=this.$el.offsetHeight /20;
+        this.timerID = setInterval(()=>{
+            this.release -=1;
+            this.updateTime()
+            if(this.release ==0){
+                clearInterval(this.timerID)
+                this.$emit('upgraded')
+            }
+            
+        },1000)
     },
     components:{
     },

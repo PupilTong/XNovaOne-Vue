@@ -11,7 +11,7 @@
       <div class="Component md-layout-item" style="position: absolute;">
         <dv-charts :option="ring" class="fullSize"/>
       </div>
-      <div class="md-layout-item discription" style="position: absolute;">
+      <div class="md-layout-item discription" style="width:80%">
           <numberKanban :options="kanbanOptions" style="width:100%;height:100%" />
       </div>
   </div>
@@ -39,8 +39,7 @@ export default {
         return{
             kanbanOptions:{
                 value:this.options.resource.data.value,
-                maxium:this.options.maxium,
-                size:10
+                maxium:this.options.maxium
             },
             ring: {
                 series: [{
@@ -93,7 +92,6 @@ export default {
     mounted(){
         var size=this.$el.offsetHeight
         this.imageHeight = size*0.6
-        this.kanbanOptions.size = size/15
         this.ring.series[0].arcLineWidth=size/15
         
     }

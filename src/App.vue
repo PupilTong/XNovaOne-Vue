@@ -53,7 +53,7 @@ export default {
             description:'Used in the extraction of metal ore, metal mines are of primary importance to all emerging and established empires.',
             enableUpgrade:true,
             enableDowngrade:true,
-            upgrading:true
+            upgrading:false
         },
         level:12,
         energy:126,
@@ -101,6 +101,7 @@ export default {
 @import "~vue-material/dist/theme/engine"; // Import the theme engine
 @include md-register-theme("default", (
   primary: md-get-palette-color(green, A700), // The primary color of your application
+  //primary: #03d3ec, // The primary color of your application
   accent: md-get-palette-color(red, 300), // The accent or secondary color
   theme: dark // This can be dark or light
 ));
@@ -121,7 +122,7 @@ export default {
   width: 100px
 }
 .size300{
-  height: 300px;
-  width: 300px
+  height: 400px;
+  width: 400px
 }
 </style>
